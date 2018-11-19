@@ -5,7 +5,7 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 class Labs {
-    Scanner input = new Scanner(System.in);
+    private Scanner input = new Scanner(System.in);
 
     void helpon(int what) {
         switch (what) {
@@ -266,7 +266,7 @@ class LabsClass {
 }
 
 class RealMatrix {
-    private int size, min, max;
+    private int min, max;
     private int[][] firstRealMatrix;
     private int[][] secondRealMatrix;
     private int[][] resultMatrix;
@@ -288,15 +288,15 @@ class RealMatrix {
         }
     }
 
-    public int[][] getFirstRealMatrix() {
+    int[][] getFirstRealMatrix() {
         return firstRealMatrix;
     }
 
-    public int[][] getSecondRealMatrix() {
+    int[][] getSecondRealMatrix() {
         return secondRealMatrix;
     }
 
-    public int[][] addMatrix() {
+    int[][] addMatrix() {
         for (int i = 0; i < resultMatrix.length; i++) {
             for (int j = 0; j < resultMatrix.length; j++) {
                 resultMatrix[i][j] = firstRealMatrix[i][j] + secondRealMatrix[i][j];
@@ -305,7 +305,7 @@ class RealMatrix {
         return resultMatrix;
     }
 
-    public int[][] addMatrix(int num) {
+    int[][] addMatrix(int num) {
         for (int i = 0; i < resultMatrix.length; i++) {
             for (int j = 0; j < resultMatrix.length; j++) {
                 resultMatrix[i][j] = firstRealMatrix[i][j] + num;
@@ -314,7 +314,7 @@ class RealMatrix {
         return resultMatrix;
     }
 
-    public int[][] subMatrix() {
+    int[][] subMatrix() {
         for (int i = 0; i < resultMatrix.length; i++) {
             for (int j = 0; j < resultMatrix.length; j++) {
                 resultMatrix[i][j] = firstRealMatrix[i][j] - secondRealMatrix[i][j];
@@ -323,7 +323,7 @@ class RealMatrix {
         return resultMatrix;
     }
 
-    public int[][] subMatrix(int num) {
+    int[][] subMatrix(int num) {
         for (int i = 0; i < resultMatrix.length; i++) {
             for (int j = 0; j < resultMatrix.length; j++) {
                 resultMatrix[i][j] = firstRealMatrix[i][j] - num;
@@ -332,11 +332,11 @@ class RealMatrix {
         return resultMatrix;
     }
 
-    public boolean equalMatrix() {
+    boolean equalMatrix() {
         return Arrays.equals(firstRealMatrix, secondRealMatrix);
     }
 
-    public int[][] matrixTransposition() {
+    int[][] matrixTransposition() {
         for (int i = 0; i < resultMatrix.length; i++) {
             for (int j = 0; j < resultMatrix.length; j++) {
                 resultMatrix[j][i] = firstRealMatrix[i][j];
