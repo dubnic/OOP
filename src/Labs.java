@@ -231,6 +231,11 @@ class Labs {
             for (int val : i) System.out.print(val + " ");
             System.out.println();
         }
+        System.out.println();
+        for (int[] i : check.matrixTransposition()) {// output second matrix
+            for (int val : i) System.out.print(val + " ");
+            System.out.println();
+        }
 
 
     }
@@ -331,8 +336,12 @@ class RealMatrix {
         return Arrays.equals(firstRealMatrix, secondRealMatrix);
     }
 
-    public int[][] matrixTransposition(int[][]) {
-
-        return;
+    public int[][] matrixTransposition() {
+        for (int i = 0; i < resultMatrix.length; i++) {
+            for (int j = 0; j < resultMatrix.length; j++) {
+                resultMatrix[j][i] = firstRealMatrix[i][j];
+            }
+        }
+        return resultMatrix;
     }
 }
