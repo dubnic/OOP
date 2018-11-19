@@ -1,6 +1,12 @@
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.Arrays;
 import java.util.Scanner;
 
 class Labs {
+    Scanner input = new Scanner(System.in);
+
     void helpon(int what) {
         switch (what) {
             case '1':
@@ -28,14 +34,17 @@ class Labs {
             case '7':
                 Lab7();
                 break;
+            case '8':
+                Lab8();
+                break;
         }
     }
 
     boolean isValid(int ch) {
-        return !(ch < '1' | ch > '7' & ch != 'q');
+        return !(ch < '1' | ch > '9' & ch != 'q');
     }
 
-    void Lab5() {
+    private void Lab5() {
         System.out.println("Laboratory work №5. One-dimensional arrays");
 
         int firstPositiveNumber = -1, secondPositiveNumber = -1;
@@ -97,7 +106,7 @@ class Labs {
 
     }
 
-    void Lab6() {
+    private void Lab6() {
         System.out.println("Laboratory work №6. Two-dimensional arrays.");
 
         int sum = 0;
@@ -162,9 +171,9 @@ class Labs {
         }
 
         //нахождение суммы модулей элементов, находящихся ниже главной диагонали
-        for(int i =1;i < array.length; i++) {
+        for (int i = 1; i < array.length; i++) {
             for (int j = 0; j < i; j++) {
-                sum+=Math.abs(array[i][j]);
+                sum += Math.abs(array[i][j]);
             }
         }
 
@@ -173,8 +182,56 @@ class Labs {
 
     }
 
-    void Lab7() {
+    private void Lab7() {
         System.out.println("Laboratory work №7. Strings");
+        String s;
+        int k = 0;
+
+        System.out.println("Введите количество слов в искомом предложении: ");
+
+        int words = input.nextInt();
+
+        try (BufferedReader br = new BufferedReader(new FileReader("Введение.txt"))) {
+            while ((s = br.readLine()) != null) {
+                for (String str : s.split("\\Q.\\E ")) { //делим содержимое файла на предложения
+                    for (String word : str.split(" ")) k++;//делим предложение на слова
+                    if (k == words) System.out.println(str);
+                    k = 0;
+                }
+            }
+        } catch (IOException exc) {
+            System.out.println("Ошибка ввода-вывода: " + exc);
+        }
+    }
+
+    private void Lab8() {
+        Scanner inp = new Scanner(System.in);
+        System.out.print("Enter the size of the matrices. ");
+        int size = inp.nextInt();
+
+        System.out.print("Enter the minimum of the matrix filling interval: ");
+        int min = inp.nextInt();
+        System.out.print("Enter the maximum of the matrix filling interval: ");
+        int max = inp.nextInt();
+
+        RealMatrix check = new RealMatrix(size, min, max);
+        check.setFillMatrix(); //fill matrices with random numbers
+
+        for (int[] i : check.getFirstRealMatrix()) { //output first matrix
+            for (int val : i) System.out.print(val + " ");
+            System.out.println();
+        }
+        System.out.println();
+        for (int[] i : check.getSecondRealMatrix()) {// output second matrix
+            for (int val : i) System.out.print(val + " ");
+            System.out.println();
+        }
+        System.out.println();
+        for (int[] i : check.addMatrix()) {// output second matrix
+            for (int val : i) System.out.print(val + " ");
+            System.out.println();
+        }
+
 
     }
 }
@@ -200,5 +257,82 @@ class LabsClass {
 
             lbsobj.helpon(choice);
         }
+    }
+}
+
+class RealMatrix {
+    private int size, min, max;
+    private int[][] firstRealMatrix;
+    private int[][] secondRealMatrix;
+    private int[][] resultMatrix;
+
+    RealMatrix(int size, int min, int max) {
+        this.min = min;
+        this.max = max;
+        this.firstRealMatrix = new int[size][size];
+        this.secondRealMatrix = new int[size][size];
+        this.resultMatrix = new int[size][size];
+    }
+
+    void setFillMatrix() {
+        for (int i = 0; i < firstRealMatrix.length; i++) {
+            for (int j = 0; j < firstRealMatrix.length; j++) {
+                firstRealMatrix[i][j] = (int) (Math.random() * (max - min)) + min; //заполняем массив случайными числами
+                secondRealMatrix[i][j] = (int) (Math.random() * (max - min)) + min; //заполняем массив случайными числами
+            }
+        }
+    }
+
+    public int[][] getFirstRealMatrix() {
+        return firstRealMatrix;
+    }
+
+    public int[][] getSecondRealMatrix() {
+        return secondRealMatrix;
+    }
+
+    public int[][] addMatrix() {
+        for (int i = 0; i < resultMatrix.length; i++) {
+            for (int j = 0; j < resultMatrix.length; j++) {
+                resultMatrix[i][j] = firstRealMatrix[i][j] + secondRealMatrix[i][j];
+            }
+        }
+        return resultMatrix;
+    }
+
+    public int[][] addMatrix(int num) {
+        for (int i = 0; i < resultMatrix.length; i++) {
+            for (int j = 0; j < resultMatrix.length; j++) {
+                resultMatrix[i][j] = firstRealMatrix[i][j] + num;
+            }
+        }
+        return resultMatrix;
+    }
+
+    public int[][] subMatrix() {
+        for (int i = 0; i < resultMatrix.length; i++) {
+            for (int j = 0; j < resultMatrix.length; j++) {
+                resultMatrix[i][j] = firstRealMatrix[i][j] - secondRealMatrix[i][j];
+            }
+        }
+        return resultMatrix;
+    }
+
+    public int[][] subMatrix(int num) {
+        for (int i = 0; i < resultMatrix.length; i++) {
+            for (int j = 0; j < resultMatrix.length; j++) {
+                resultMatrix[i][j] = firstRealMatrix[i][j] - num;
+            }
+        }
+        return resultMatrix;
+    }
+
+    public boolean equalMatrix() {
+        return Arrays.equals(firstRealMatrix, secondRealMatrix);
+    }
+
+    public int[][] matrixTransposition(int[][]) {
+
+        return;
     }
 }
