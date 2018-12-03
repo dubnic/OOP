@@ -5,7 +5,7 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 class Labs {
-    private Scanner input = new Scanner(System.in);
+    static Scanner input = new Scanner(System.in);
 
     void helpon(int what) {
         switch (what) {
@@ -205,38 +205,6 @@ class Labs {
     }
 
     private void Lab8() {
-        Scanner inp = new Scanner(System.in);
-        System.out.print("Enter the size of the matrices. ");
-        int size = inp.nextInt();
-
-        System.out.print("Enter the minimum of the matrix filling interval: ");
-        int min = inp.nextInt();
-        System.out.print("Enter the maximum of the matrix filling interval: ");
-        int max = inp.nextInt();
-
-        RealMatrix check = new RealMatrix(size, min, max);
-        check.setFillMatrix(); //fill matrices with random numbers
-
-        for (int[] i : check.getFirstRealMatrix()) { //output first matrix
-            for (int val : i) System.out.print(val + " ");
-            System.out.println();
-        }
-        System.out.println();
-        for (int[] i : check.getSecondRealMatrix()) {// output second matrix
-            for (int val : i) System.out.print(val + " ");
-            System.out.println();
-        }
-        System.out.println();
-        for (int[] i : check.addMatrix()) {// output second matrix
-            for (int val : i) System.out.print(val + " ");
-            System.out.println();
-        }
-        System.out.println();
-        for (int[] i : check.matrixTransposition()) {// output second matrix
-            for (int val : i) System.out.print(val + " ");
-            System.out.println();
-        }
-
 
     }
 }
@@ -266,24 +234,18 @@ class LabsClass {
 }
 
 class RealMatrix {
-    private int min, max;
     private int[][] firstRealMatrix;
-    private int[][] secondRealMatrix;
     private int[][] resultMatrix;
 
-    RealMatrix(int size, int min, int max) {
-        this.min = min;
-        this.max = max;
+    RealMatrix(int size) {
         this.firstRealMatrix = new int[size][size];
-        this.secondRealMatrix = new int[size][size];
         this.resultMatrix = new int[size][size];
     }
 
-    void setFillMatrix() {
-        for (int i = 0; i < firstRealMatrix.length; i++) {
-            for (int j = 0; j < firstRealMatrix.length; j++) {
-                firstRealMatrix[i][j] = (int) (Math.random() * (max - min)) + min; //заполняем массив случайными числами
-                secondRealMatrix[i][j] = (int) (Math.random() * (max - min)) + min; //заполняем массив случайными числами
+    void setFillMatrixMannually(int[][] Matrix) {
+        for (int i = 0; i < Matrix.length; i++) {
+            for (int j = 0; j < Matrix.length; j++) {
+                Matrix[i][j] = Labs.input.nextInt();
             }
         }
     }
@@ -292,11 +254,7 @@ class RealMatrix {
         return firstRealMatrix;
     }
 
-    int[][] getSecondRealMatrix() {
-        return secondRealMatrix;
-    }
-
-    int[][] addMatrix() {
+    int[][] addMatrix(int[][] secondRealMatrix) {
         for (int i = 0; i < resultMatrix.length; i++) {
             for (int j = 0; j < resultMatrix.length; j++) {
                 resultMatrix[i][j] = firstRealMatrix[i][j] + secondRealMatrix[i][j];
@@ -314,7 +272,7 @@ class RealMatrix {
         return resultMatrix;
     }
 
-    int[][] subMatrix() {
+    int[][] subMatrix(int[][] secondRealMatrix) {
         for (int i = 0; i < resultMatrix.length; i++) {
             for (int j = 0; j < resultMatrix.length; j++) {
                 resultMatrix[i][j] = firstRealMatrix[i][j] - secondRealMatrix[i][j];
@@ -332,7 +290,7 @@ class RealMatrix {
         return resultMatrix;
     }
 
-    boolean equalMatrix() {
+    boolean equalMatrix(int[][] secondRealMatrix) {
         return Arrays.equals(firstRealMatrix, secondRealMatrix);
     }
 
@@ -343,5 +301,14 @@ class RealMatrix {
             }
         }
         return resultMatrix;
+    }
+
+    int indexAccess(int size) {
+        System.out.print("Enter line number: ");
+        int lineNumber = Labs.input.nextInt();
+        System.out.print("Enter column number: ");
+        int columnNumber = Labs.input.nextInt();
+
+        return firstRealMatrix[lineNumber][columnNumber];
     }
 }
