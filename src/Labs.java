@@ -205,9 +205,16 @@ class Labs {
     }
 
     private void Lab8() {
+        //not finished
         RealMatrix yyy = new RealMatrix(5);
         yyy.setFillMatrixMannually();
         yyy.inverseMatrix();
+    }
+
+    private void Lab10() {
+        Train[] trains = new Train[8];
+
+
     }
 }
 
@@ -343,7 +350,7 @@ class RealMatrix {
     }
 
     double[][] inverseMatrix() {
-         int buf = 0;
+        int buf = 0;
 
         for (int m = 0; m < firstRealMatrix.length; m++) {
             buf = firstRealMatrix[m][m];
@@ -353,8 +360,10 @@ class RealMatrix {
                 identityMatrix[i][j] /= buf;
             }
 
+            int j = 0;
             for (int i = 0; i < firstRealMatrix.length; i++) {
-                for (int j = 0; j < firstRealMatrix[0].length; j++) {
+                //something wrong
+                for (j = 0; j < firstRealMatrix[0].length; j++) {
                     if (i == m) continue;
                     firstRealMatrix[i][j] -= firstRealMatrix[i][m] * firstRealMatrix[m][j];
                     identityMatrix[i][j] -= (double) firstRealMatrix[i][m] * identityMatrix[m][j];
