@@ -336,67 +336,18 @@ class RealMatrix {
 
     int[][] inverseMatrix() {
 
-        for (int i = 0, j = 0; j < firstRealMatrix[0].length; j++) {
-            firstRealMatrix[i][j] /= firstRealMatrix[i][i]; //первую строку делим элемент [0][0]
-            identityMatrix[i][j] /= firstRealMatrix[i][i];
-        }
-
-        for (int i = 1; i < firstRealMatrix.length; i++) {
-            for (int j = 0; j < firstRealMatrix[0].length; j++) {
-                firstRealMatrix[i][j] -= firstRealMatrix[i][0] * firstRealMatrix[0][j];
-                identityMatrix[i][j] -= firstRealMatrix[i][0] * identityMatrix[0][j];
+        for (int m = 0; m < firstRealMatrix.length; m++ ) {
+            for (int i = m, j = 0; j < firstRealMatrix[0].length; j++) {
+                firstRealMatrix[i][j] /= firstRealMatrix[i][i]; //первую строку делим элемент [0][0]
+                identityMatrix[i][j] /= firstRealMatrix[i][i];
             }
-        }
 
-        for (int i = 1, j = 0; j < firstRealMatrix[0].length; j++) {
-            firstRealMatrix[i][j] /= firstRealMatrix[i][i]; //первую строку делим элемент [0][0]
-            identityMatrix[i][j] /= firstRealMatrix[i][i];
-        }
-
-        for (int i = 0; i < firstRealMatrix.length; i++) {
-            for (int j = 0; j < firstRealMatrix[0].length; j++) {
-                if (i == 1) continue;
-                firstRealMatrix[i][j] -= firstRealMatrix[i][1] * firstRealMatrix[1][j];
-                identityMatrix[i][j] -= firstRealMatrix[i][1] * identityMatrix[1][j];
-            }
-        }
-
-        for (int i = 2, j = 0; j < firstRealMatrix[0].length; j++) {
-            firstRealMatrix[i][j] /= firstRealMatrix[i][i]; //первую строку делим элемент [0][0]
-            identityMatrix[i][j] /= firstRealMatrix[i][i];
-        }
-
-        for (int i = 0; i < firstRealMatrix.length; i++) {
-            for (int j = 0; j < firstRealMatrix[0].length; j++) {
-                if (i == 2) continue;
-                firstRealMatrix[i][j] -= firstRealMatrix[i][2] * firstRealMatrix[2][j];
-                identityMatrix[i][j] -= firstRealMatrix[i][2] * identityMatrix[2][j];
-            }
-        }
-
-        for (int i = 3, j = 0; j < firstRealMatrix[0].length; j++) {
-            firstRealMatrix[i][j] /= firstRealMatrix[i][i]; //первую строку делим элемент [0][0]
-            identityMatrix[i][j] /= firstRealMatrix[i][i];
-        }
-
-        for (int i = 0; i < firstRealMatrix.length; i++) {
-            for (int j = 0; j < firstRealMatrix[0].length; j++) {
-                if (i == 3) continue;
-                firstRealMatrix[i][j] -= firstRealMatrix[i][3] * firstRealMatrix[3][j];
-                identityMatrix[i][j] -= firstRealMatrix[i][3] * identityMatrix[3][j];
-            }
-        }
-
-        for (int i = 4, j = 0; j < firstRealMatrix[0].length; j++) {
-            firstRealMatrix[i][j] /= firstRealMatrix[i][i]; //первую строку делим элемент [0][0]
-            identityMatrix[i][j] /= firstRealMatrix[i][i];
-        }
-
-        for (int i = 0; i < firstRealMatrix.length; i++) {
-            for (int j = 0; j < firstRealMatrix[0].length; j++) {
-                if (i == 4) continue;
-                firstRealMatrix[i][j] -= firstRealMatrix[i][4] * firstRealMatrix[4][j];
-                identityMatrix[i][j] -= firstRealMatrix[i][4] * identityMatrix[4][j];
+            for (int i = 0; i < firstRealMatrix.length; i++) {
+                for (int j = 0; j < firstRealMatrix[0].length; j++) {
+                    if (i == m) continue;
+                    firstRealMatrix[i][j] -= firstRealMatrix[i][m] * firstRealMatrix[m][j];
+                    identityMatrix[i][j] -= firstRealMatrix[i][m] * identityMatrix[m][j];
+                }
             }
         }
 
@@ -406,6 +357,7 @@ class RealMatrix {
             }
             System.out.println();
         }
+
         return identityMatrix;
     }
 
