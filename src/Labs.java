@@ -238,13 +238,13 @@ class LabsClass {
 class RealMatrix {
     private int[][] firstRealMatrix;
     private int[][] resultMatrix;
-    private int[][] identityMatrix;
+    private double[][] identityMatrix;
 
 
     RealMatrix(int size) {
         this.firstRealMatrix = new int[size][size];
         this.resultMatrix = new int[size][size];
-        this.identityMatrix = new int[size][size];
+        this.identityMatrix = new double[size][size];
 
         for (int i = 0; i < identityMatrix.length; i++) {
             for (int j = 0; j < identityMatrix.length; j++) {
@@ -259,6 +259,14 @@ class RealMatrix {
         for (int i = 0; i < firstRealMatrix.length; i++) {
             for (int j = 0; j < firstRealMatrix.length; j++) {
                 firstRealMatrix[i][j] = Labs.input.nextInt();
+            }
+        }
+    }
+
+    void setFillMatrixRandom() {
+        for (int i = 0; i < firstRealMatrix.length; i++) {
+            for (int j = 0; j < firstRealMatrix.length; j++) {
+                firstRealMatrix[i][j] = (int) (Math.random() * 100); //заполняем массив случайными числами
             }
         }
     }
@@ -334,26 +342,29 @@ class RealMatrix {
         return resultMatrix;
     }
 
-    int[][] inverseMatrix() {
+    double[][] inverseMatrix() {
+         int buf = 0;
 
-        for (int m = 0; m < firstRealMatrix.length; m++ ) {
+        for (int m = 0; m < firstRealMatrix.length; m++) {
+            buf = firstRealMatrix[m][m];
+
             for (int i = m, j = 0; j < firstRealMatrix[0].length; j++) {
-                firstRealMatrix[i][j] /= firstRealMatrix[i][i]; //первую строку делим элемент [0][0]
-                identityMatrix[i][j] /= firstRealMatrix[i][i];
+                firstRealMatrix[i][j] /= buf;
+                identityMatrix[i][j] /= buf;
             }
 
             for (int i = 0; i < firstRealMatrix.length; i++) {
                 for (int j = 0; j < firstRealMatrix[0].length; j++) {
                     if (i == m) continue;
                     firstRealMatrix[i][j] -= firstRealMatrix[i][m] * firstRealMatrix[m][j];
-                    identityMatrix[i][j] -= firstRealMatrix[i][m] * identityMatrix[m][j];
+                    identityMatrix[i][j] -= (double) firstRealMatrix[i][m] * identityMatrix[m][j];
                 }
             }
         }
 
-        for (int[] kek : identityMatrix) {
-            for (int lol : kek) {
-                System.out.print(lol + " ");
+        for (double[] rows : identityMatrix) {
+            for (double columns : rows) {
+                System.out.print(columns + " ");
             }
             System.out.println();
         }
