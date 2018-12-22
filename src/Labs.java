@@ -37,6 +37,9 @@ class Labs {
             case '8':
                 Lab8();
                 break;
+            case '9':
+                Lab9();
+                break;
         }
     }
 
@@ -211,11 +214,22 @@ class Labs {
         yyy.inverseMatrix();
     }
 
-    private void Lab10() {
-        Train[] trains = new Train[8];
+    private void Lab9() {
+        ComplexNumber firstCN = new ComplexNumber("-5","12");
+        ComplexNumber secondCN = new ComplexNumber("25", "-9");
 
+        System.out.println("First complex number: " + firstCN.getComplexNumber());
+        System.out.println("Second complex number: " + secondCN.getComplexNumber());
 
+        firstCN.setComplexNumber();
+
+        System.out.println("Is the first complex number the second? " + firstCN.isEqual(secondCN));
+
+        System.out.println("The sum of the first and second complex numbers is :" + firstCN.addition(secondCN));
+
+        System.out.println("The product of the first and second complex numbers is :" + firstCN.multiplication(secondCN));
     }
+
 }
 
 class LabsClass {
