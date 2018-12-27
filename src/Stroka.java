@@ -1,4 +1,4 @@
-public class Stroka implements IComparable {
+abstract public class Stroka implements IComparable {
 
     private String string;
 
@@ -14,13 +14,19 @@ public class Stroka implements IComparable {
 
     }
 
-
-    public int getStringLength() {
+    int getStringLength() {
         return string.length();
     }
 
-    public void setClearString() {
+    public void setString() {
         string = "";
     }
 
+    public String getString() {
+        return string;
+    }
+
+    abstract String addition(ComplexNumber anotherCN);
+
+    abstract String multiplication(ComplexNumber anotherCN);
 }

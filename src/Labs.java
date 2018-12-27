@@ -41,11 +41,14 @@ class Labs {
             case '9':
                 Lab9();
                 break;
+            case '0':
+                Lab11();
+                break;
         }
     }
 
     boolean isValid(int ch) {
-        return !(ch < '1' | ch > '9' & ch != 'q');
+        return !(ch < '0' | ch > '9' & ch != 'q');
     }
 
     private void Lab5() {
@@ -216,30 +219,52 @@ class Labs {
     }
 
     private void Lab9() {
-        Stroka[] CN = new Stroka[2];
-        ComplexNumber firstCN = new ComplexNumber("-5","12");
+        Stroka[] CN = new Stroka[3];
+        ComplexNumber firstCN = new ComplexNumber("-5", "12");
         ComplexNumber secondCN = new ComplexNumber("25", "-9");
 
-        CN[0] = firstCN;
-        CN[1] = secondCN;
+        //Stroka first = new Stroka("Object-oriented programming");
 
-        System.out.println("First complex number: " + CN[0].getComplexNumber());
-        System.out.println("Second complex number: " + CN[1].getComplexNumber());
+        //CN[0] = first;
+        CN[1] = firstCN;
+        CN[2] = secondCN;
 
-        CN[0].setComplexNumber();
+        /*System.out.println("The length of the string \"" + first.getString() + "\" is " + first.getStringLength());
+        first.setClearString();
+        System.out.println("After cleaning the length of the string \"" + first.getString() + "\" is " + first.getStringLength());*/
 
-        System.out.println("Is the first complex number the second? " + CN[0].equals(secondCN));
+        System.out.println("First complex number: " + CN[1].getString());
+        System.out.println("Second complex number: " + CN[2].getString());
 
-        System.out.println("The sum of the first and second complex numbers is :" + CN[0].addition(secondCN));
+        CN[1].setString();
 
-        System.out.println("The product of the first and second complex numbers is :" + CN[0].multiplication(secondCN));
+        System.out.println("Is the first complex number the second? " + CN[1].equals(secondCN));
+
+        System.out.println("The sum of the first and second complex numbers is :" + CN[1].addition(secondCN));
+
+        System.out.println("The product of the first and second complex numbers is :" + CN[1].multiplication(secondCN));
     }
 
-    private void Lab10() {
-        ArrayList<Object> lst = new ArrayList();
-        lst.add(new ComplexNumber("-5","12"));
+    private void Lab11() {
+        ArrayList<ComplexNumber> lst = new ArrayList<>();
+        //lst.add(new Stroka("Object-oriented programming"));
+        lst.add(new ComplexNumber("-5", "12"));
         lst.add(new ComplexNumber("25", "-9"));
 
+        /*System.out.println("The length of the string \"" + firstCN.getString() + "\" is " + first.getStringLength());
+        first.setClearString();
+        System.out.println("After cleaning the length of the string \"" + first.getString() + "\" is " + first.getStringLength());*/
+
+        System.out.println("First complex number: " + lst.get(0).getString());
+        System.out.println("Second complex number: " + lst.get(1).getString());
+
+        lst.get(0).setString();
+
+        System.out.println("Is the first complex number the second? " + lst.get(0).equals(lst.get(1)));
+
+        System.out.println("The sum of the first and second complex numbers is :" + lst.get(0).addition(lst.get(1)));
+
+        System.out.println("The product of the first and second complex numbers is :" + lst.get(0).multiplication(lst.get(0)));
     }
 
 }

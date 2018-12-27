@@ -1,19 +1,21 @@
 import java.util.Scanner;
 
-class ComplexNumber extends Stroka implements IComparable{
+class ComplexNumber extends Stroka implements IComparable {
     private String realPart;
     private String imaginaryPart;
 
     ComplexNumber(String imaginaryPart, String realPart) {
-        this.realPart = realPart.matches("-?\\d+") ? realPart : "0" ;
+        this.realPart = realPart.matches("-?\\d+") ? realPart : "0";
         this.imaginaryPart = imaginaryPart.matches("([-+])?\\d+") ? imaginaryPart : "0";
     }
 
-    public String getComplexNumber() {
+    @Override
+    public String getString() {
         return imaginaryPart + "i" + realPart;
     }
 
-    public void setComplexNumber() {
+    @Override
+    public void setString() {
         Scanner input = new Scanner(System.in);
 
         System.out.print("Enter the imagine part of the complex number: ");
@@ -31,19 +33,31 @@ class ComplexNumber extends Stroka implements IComparable{
         realPart = String.valueOf(input.nextLine());
     }
 
-    boolean equals(ComplexNumber anotherCN) {
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+
+        if (obj == null || obj.getClass() != this.getClass()) {
+            return false;
+        }
+
+        ComplexNumber anotherCN = (ComplexNumber) obj;
+
         return ((realPart.equals(anotherCN.realPart)) && (imaginaryPart.equals(anotherCN.imaginaryPart)));
     }
 
+    @Override
     String addition(ComplexNumber anotherCN) {
-        return  Integer.parseInt(imaginaryPart) + Integer.parseInt(anotherCN.imaginaryPart) + "i" +
+        return Integer.parseInt(imaginaryPart) + Integer.parseInt(anotherCN.imaginaryPart) + "i" +
                 (Integer.parseInt(realPart) + Integer.parseInt(anotherCN.realPart));
     }
 
     String multiplication(ComplexNumber anotherCN) {
-        return Integer.parseInt(realPart) * Integer.parseInt( anotherCN.imaginaryPart) +
-                Integer.parseInt(imaginaryPart)* Integer.parseInt(anotherCN.realPart) + "i" +
+        return Integer.parseInt(realPart) * Integer.parseInt(anotherCN.imaginaryPart) +
+                Integer.parseInt(imaginaryPart) * Integer.parseInt(anotherCN.realPart) + "i" +
                 (Integer.parseInt(realPart) * Integer.parseInt(anotherCN.realPart) -
-                Integer.parseInt( imaginaryPart) * Integer.parseInt(anotherCN.imaginaryPart));
+                        Integer.parseInt(imaginaryPart) * Integer.parseInt(anotherCN.imaginaryPart));
     }
 }
