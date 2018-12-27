@@ -23,12 +23,4 @@ public class Stroka implements IComparable {
         string = "";
     }
 
-    public String getComplexNumber() {
-        return string;
-    }
-
-    public void setComplexNumber() {
-
-    }
-
 }

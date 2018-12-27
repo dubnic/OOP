@@ -9,12 +9,10 @@ class ComplexNumber extends Stroka implements IComparable{
         this.imaginaryPart = imaginaryPart.matches("([-+])?\\d+") ? imaginaryPart : "0";
     }
 
-    @Override
     public String getComplexNumber() {
         return imaginaryPart + "i" + realPart;
     }
 
-    @Override
     public void setComplexNumber() {
         Scanner input = new Scanner(System.in);
 
