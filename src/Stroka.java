@@ -1,4 +1,4 @@
-public class Stroka {
+public class Stroka implements IComparable {
 
     private String string;
 
@@ -14,6 +14,7 @@ public class Stroka {
 
     }
 
+
     public int getStringLength() {
         return string.length();
     }
@@ -21,4 +22,13 @@ public class Stroka {
     public void setClearString() {
         string = "";
     }
+
+    public String getComplexNumber() {
+        return string;
+    }
+
+    public void setComplexNumber() {
+
+    }
+
 }

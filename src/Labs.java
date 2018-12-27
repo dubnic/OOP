@@ -1,6 +1,7 @@
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
 
@@ -59,7 +60,7 @@ class Labs {
         Scanner input = new Scanner(System.in);
 
         int arraySize = input.nextInt();
-        int array[] = new int[arraySize];
+        int[] array = new int[arraySize];
 
         System.out.println("Введите минимум интервала заполнения массива:  ");
         int min = input.nextInt();
@@ -113,7 +114,7 @@ class Labs {
         System.out.println("Laboratory work №6. Two-dimensional arrays.");
 
         int sum = 0;
-        int array[][] = new int[10][10];
+        int[][] array = new int[10][10];
 
         Scanner input = new Scanner(System.in);
         System.out.println("Введите минимум интервала заполнения массива:  ");
@@ -215,19 +216,30 @@ class Labs {
     }
 
     private void Lab9() {
+        Stroka[] CN = new Stroka[2];
         ComplexNumber firstCN = new ComplexNumber("-5","12");
         ComplexNumber secondCN = new ComplexNumber("25", "-9");
 
-        System.out.println("First complex number: " + firstCN.getComplexNumber());
-        System.out.println("Second complex number: " + secondCN.getComplexNumber());
+        CN[0] = firstCN;
+        CN[1] = secondCN;
 
-        firstCN.setComplexNumber();
+        System.out.println("First complex number: " + CN[0].getComplexNumber());
+        System.out.println("Second complex number: " + CN[1].getComplexNumber());
 
-        System.out.println("Is the first complex number the second? " + firstCN.isEqual(secondCN));
+        CN[0].setComplexNumber();
 
-        System.out.println("The sum of the first and second complex numbers is :" + firstCN.addition(secondCN));
+        System.out.println("Is the first complex number the second? " + CN[0].equals(secondCN));
 
-        System.out.println("The product of the first and second complex numbers is :" + firstCN.multiplication(secondCN));
+        System.out.println("The sum of the first and second complex numbers is :" + CN[0].addition(secondCN));
+
+        System.out.println("The product of the first and second complex numbers is :" + CN[0].multiplication(secondCN));
+    }
+
+    private void Lab10() {
+        ArrayList<Object> lst = new ArrayList();
+        lst.add(new ComplexNumber("-5","12"));
+        lst.add(new ComplexNumber("25", "-9"));
+
     }
 
 }

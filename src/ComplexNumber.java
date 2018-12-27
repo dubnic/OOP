@@ -1,19 +1,21 @@
 import java.util.Scanner;
 
-class ComplexNumber extends Stroka {
+class ComplexNumber extends Stroka implements IComparable{
     private String realPart;
     private String imaginaryPart;
 
     ComplexNumber(String imaginaryPart, String realPart) {
         this.realPart = realPart.matches("-?\\d+") ? realPart : "0" ;
-        this.imaginaryPart = imaginaryPart.matches("([-+])?\\d+")?imaginaryPart: "0";
+        this.imaginaryPart = imaginaryPart.matches("([-+])?\\d+") ? imaginaryPart : "0";
     }
 
-    String getComplexNumber() {
+    @Override
+    public String getComplexNumber() {
         return imaginaryPart + "i" + realPart;
     }
 
-    void setComplexNumber() {
+    @Override
+    public void setComplexNumber() {
         Scanner input = new Scanner(System.in);
 
         System.out.print("Enter the imagine part of the complex number: ");
@@ -31,7 +33,7 @@ class ComplexNumber extends Stroka {
         realPart = String.valueOf(input.nextLine());
     }
 
-    boolean isEqual(ComplexNumber anotherCN) {
+    boolean equals(ComplexNumber anotherCN) {
         return ((realPart.equals(anotherCN.realPart)) && (imaginaryPart.equals(anotherCN.imaginaryPart)));
     }
 
@@ -42,7 +44,8 @@ class ComplexNumber extends Stroka {
 
     String multiplication(ComplexNumber anotherCN) {
         return Integer.parseInt(realPart) * Integer.parseInt( anotherCN.imaginaryPart) +
-                Integer.parseInt(imaginaryPart)* Integer.parseInt(anotherCN.realPart) + "i" + (Integer.parseInt(realPart) * Integer.parseInt(anotherCN.realPart) -
+                Integer.parseInt(imaginaryPart)* Integer.parseInt(anotherCN.realPart) + "i" +
+                (Integer.parseInt(realPart) * Integer.parseInt(anotherCN.realPart) -
                 Integer.parseInt( imaginaryPart) * Integer.parseInt(anotherCN.imaginaryPart));
     }
 }
